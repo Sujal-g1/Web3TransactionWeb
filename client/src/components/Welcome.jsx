@@ -2,6 +2,7 @@ import React from 'react'
 import { AiFillPlayCircle } from 'react-icons/ai'
 import { SiEthereum } from 'react-icons/si'
 import { BsInfoCircle  } from 'react-icons/bs'
+import { motion } from 'framer-motion'
 
 import { Loader } from './'
 
@@ -27,16 +28,46 @@ const ConnectWallet =() =>{
    
 }
 
+const handleSubmit = () =>{
+
+}
+
+const container = {
+  hidden:{},
+  show: {
+    transition: {
+    staggerChildren: 0.4
+    }
+  }
+}
+
+const item = {
+  hidden: { y: 100, opacity: 0 },
+  show: {
+    y: 0,
+    opacity: 1,
+    transition: { duration: 0.6 }
+  }
+};
+
   return (
     <div className='flex w-full justify-center items-center'>
       <div className='flex md:flex-row flex-col items-start justify-between md:p-20 py-12 px-4'>
-        <div className='flex flex-1 justify-start flex-col md:mr-10'>
+        <motion.div 
+        variants={container}
+        initial="hidden"
+        animate="show"
+        className='flex flex-1 justify-start flex-col md:mr-10'>
 
-          <h1 className='text-3xl sm:text-5xl text-white  text-gradient'>Send Crypto <br /> across the World </h1>
+          <motion.h1 
+          variants={item}
+          className='text-3xl sm:text-5xl text-white  text-gradient'>Send Crypto <br /> across the World </motion.h1>
 
-    <p className='text-left mt-5 text-white font-light md:9/12 w-11/12 text-base'>
+    <motion.p
+    variants={item}
+     className='text-left mt-5 text-white font-light md:9/12 w-11/12 text-base'>
             Explore the crypto world. Buy and Sell cryptocurrencies on Krypto.
-    </p>
+    </motion.p>
 
     <button
     type="button"
@@ -68,7 +99,7 @@ const ConnectWallet =() =>{
         Blockchain
       </div>
      </div>
-      </div>
+      </motion.div>
 
     <div className='flex flex-col flex-1 items-center justify-start    w-full md:mt-0 mt-10'>
     <div className='p-3 justify-end items-start flex-col rounded-xl h-40 sm:w-72 w-full my-5 eth-card white-glassmorphism '>
@@ -107,10 +138,14 @@ const ConnectWallet =() =>{
       type="text"  handleChange={()=> {}}/>
 
       <div className='h-[1px] w-full bg-gray-400 my-2'></div>
+
       {true ? ( 
         <Loader />
       ) : (
-        <div></div>
+        <button type="button"
+        onClick={handleSubmit}
+        className='text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer'
+        > Send Now</button>
       ) }
     </div>
 
